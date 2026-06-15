@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bpun4b1dvxeir"]
+
+[ext_resource type="Script" uid="uid://d3yyeg35wb8au" path="res://gui/screens/screen_state.gd" id="1_1p5gg"]
+
+[node name="ScreenState" type="Control" unique_id=53646727]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1p5gg")
+
+[node name="Timer" type="Timer" parent="." unique_id=1461768616]
+autostart = true
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1157942037]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

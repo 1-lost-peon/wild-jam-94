@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ungp6scpydh6"]
+
+[ext_resource type="PackedScene" uid="uid://cjxejhya6fhw5" path="res://gui/gui.tscn" id="1_pjrb6"]
+[ext_resource type="Script" uid="uid://b117wday31ajg" path="res://main/main.gd" id="1_xwkvk"]
+
+[node name="Main" type="Node" unique_id=2019348863]
+script = ExtResource("1_xwkvk")
+
+[node name="GUI" parent="." unique_id=2042857289 instance=ExtResource("1_pjrb6")]

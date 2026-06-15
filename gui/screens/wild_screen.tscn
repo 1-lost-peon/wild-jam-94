@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://d0cis4hgjd436"]
+
+[ext_resource type="Script" uid="uid://d3yyeg35wb8au" path="res://gui/screens/screen_state.gd" id="1_yphyx"]
+[ext_resource type="PackedScene" uid="uid://b0mxt7mpea850" path="res://gui/screens/menus/main_menu.tscn" id="2_fd856"]
+[ext_resource type="Texture2D" uid="uid://b8abosgjyijqj" path="res://gui/screens/GWJ-Half-Logo-Orange.svg" id="3_el318"]
+
+[node name="WildScreen" type="Control" unique_id=1714585361]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yphyx")
+next_screen_scene = ExtResource("2_fd856")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=233191046]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.078431375, 0.13333334, 0.2509804, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1345204870]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -160.0
+offset_right = 160.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_el318")
+
+[node name="Timer" type="Timer" parent="." unique_id=240101921]

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cxm5iyfnt55ym"]
+
+[ext_resource type="Script" uid="uid://b52x5qxfr1r3h" path="res://world/player.gd" id="1_2gpuf"]
+[ext_resource type="Texture2D" uid="uid://dw4xwoeqdk5iy" path="res://world/turtle.png" id="2_mmw4h"]
+[ext_resource type="Texture2D" uid="uid://fphhylooqjbb" path="res://world/arm.png" id="3_4nodc"]
+
+[node name="Player" type="Node2D" unique_id=1277995114]
+script = ExtResource("1_2gpuf")
+
+[node name="Turtle" type="Sprite2D" parent="." unique_id=1306916983]
+texture = ExtResource("2_mmw4h")
+
+[node name="Arms1" type="Node2D" parent="Turtle" unique_id=1914157484]
+visible = false
+position = Vector2(-186, -346)
+
+[node name="MonsterArm" type="Sprite2D" parent="Turtle/Arms1" unique_id=290229747]
+position = Vector2(262.99997, 311)
+rotation = -1.5707964
+scale = Vector2(0.26672354, 0.32346398)
+texture = ExtResource("3_4nodc")
+
+[node name="MonsterArm2" type="Sprite2D" parent="Turtle/Arms1" unique_id=101842513]
+position = Vector2(112.000015, 311)
+rotation = -1.5707964
+scale = Vector2(0.26672354, 0.32346398)
+texture = ExtResource("3_4nodc")
+flip_v = true

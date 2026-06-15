@@ -1,0 +1,213 @@
+[gd_scene format=3 uid="uid://duk23si6l6ny1"]
+
+[ext_resource type="Script" uid="uid://bia1l67q1y6p6" path="res://world/world.gd" id="1_h5o24"]
+[ext_resource type="Texture2D" uid="uid://bm66lekbmw6qc" path="res://gui/screens/menus/city.jpg" id="3_h5o24"]
+[ext_resource type="Texture2D" uid="uid://dw4xwoeqdk5iy" path="res://world/turtle.png" id="5_fn3g3"]
+[ext_resource type="Shader" uid="uid://ik6sm6l1vpym" path="res://world/city_destruction.gdshader" id="5_mmdvd"]
+[ext_resource type="Texture2D" uid="uid://6k234vubsyav" path="res://world/destroyed_city.png" id="6_fn3g3"]
+[ext_resource type="Texture2D" uid="uid://fphhylooqjbb" path="res://world/arm.png" id="6_sc4t8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fn3g3"]
+shader = ExtResource("5_mmdvd")
+shader_parameter/texture_a = ExtResource("6_fn3g3")
+shader_parameter/texture_b = ExtResource("3_h5o24")
+shader_parameter/progress = 0.0
+shader_parameter/feather = 0.0
+
+[node name="World" type="Control" unique_id=1273771794]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h5o24")
+
+[node name="City" type="Sprite2D" parent="." unique_id=1545383954]
+material = SubResource("ShaderMaterial_fn3g3")
+position = Vector2(349.5, 304.5)
+scale = Vector2(1.0466238, 1.0485715)
+texture = ExtResource("3_h5o24")
+
+[node name="Turtle" type="Sprite2D" parent="." unique_id=1045797940]
+position = Vector2(186, 346)
+texture = ExtResource("5_fn3g3")
+
+[node name="Arms1" type="Node2D" parent="Turtle" unique_id=1398921399]
+visible = false
+position = Vector2(-186, -346)
+
+[node name="MonsterArm" type="Sprite2D" parent="Turtle/Arms1" unique_id=896201187]
+position = Vector2(262.99997, 311)
+rotation = -1.5707964
+scale = Vector2(0.26672354, 0.32346398)
+texture = ExtResource("6_sc4t8")
+
+[node name="MonsterArm2" type="Sprite2D" parent="Turtle/Arms1" unique_id=1209730935]
+position = Vector2(112.000015, 311)
+rotation = -1.5707964
+scale = Vector2(0.26672354, 0.32346398)
+texture = ExtResource("6_sc4t8")
+flip_v = true
+
+[node name="DestructionPoints" type="Label" parent="." unique_id=1225627915]
+layout_mode = 0
+offset_left = 292.0
+offset_top = 81.0
+offset_right = 440.0
+offset_bottom = 104.0
+text = "Destruction Points:"
+
+[node name="Amount" type="Label" parent="." unique_id=108023969]
+layout_mode = 0
+offset_left = 451.0
+offset_top = 82.0
+offset_right = 491.0
+offset_bottom = 105.0
+text = "0"
+
+[node name="HealthLabel" type="Label" parent="." unique_id=2088512592]
+layout_mode = 0
+offset_left = 292.0
+offset_top = 114.0
+offset_right = 440.0
+offset_bottom = 137.0
+text = "Health:"
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1292779330]
+layout_mode = 0
+offset_left = 451.0
+offset_top = 114.0
+offset_right = 591.0
+offset_bottom = 138.0
+value = 100.0
+
+[node name="CityDestroyedLabel" type="Label" parent="." unique_id=2130945965]
+layout_mode = 0
+offset_left = 292.0
+offset_top = 145.0
+offset_right = 440.0
+offset_bottom = 168.0
+text = "City Destroyed:"
+
+[node name="CityDestroyedAmount" type="Label" parent="." unique_id=609010477]
+layout_mode = 0
+offset_left = 451.0
+offset_top = 145.0
+offset_right = 520.0
+offset_bottom = 168.0
+text = "0%"
+
+[node name="AttackRestButton" type="Button" parent="." unique_id=632441545]
+layout_mode = 0
+offset_left = 292.0
+offset_top = 177.0
+offset_right = 591.0
+offset_bottom = 217.0
+tooltip_text = "Toggle between attacking the city and resting to recover health."
+toggle_mode = true
+text = "Resting - Click to Attack"
+
+[node name="Panel" type="Panel" parent="." unique_id=84425893]
+layout_mode = 0
+offset_left = 686.0
+offset_top = 145.0
+offset_right = 1149.0
+offset_bottom = 590.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel" unique_id=1856050343]
+layout_mode = 0
+offset_right = 463.0
+offset_bottom = 445.0
+
+[node name="GridContainer" type="GridContainer" parent="Panel/VBoxContainer2" unique_id=248620851]
+layout_mode = 2
+columns = 3
+
+[node name="ExtraArms" type="Button" parent="Panel/VBoxContainer2/GridContainer" unique_id=1161977232]
+layout_mode = 2
+tooltip_text = "Grows another pair of arms and permanently increases destruction speed."
+text = "Extra Arms"
+
+[node name="NightVision" type="Button" parent="Panel/VBoxContainer2/GridContainer" unique_id=1438176957]
+layout_mode = 2
+text = "Night Vision"
+
+[node name="VenomGlands" type="Button" parent="Panel/VBoxContainer2/GridContainer" unique_id=1405779791]
+layout_mode = 2
+text = "Venom Glands"
+
+[node name="ExtraEyes" type="Button" parent="Panel/VBoxContainer2/GridContainer" unique_id=2034632160]
+layout_mode = 2
+text = "Extra Eyes"
+
+[node name="BoneSpikes" type="Button" parent="Panel/VBoxContainer2/GridContainer" unique_id=2115143365]
+layout_mode = 2
+text = "Bone Spikes"
+
+[node name="Wings" type="Button" parent="Panel/VBoxContainer2/GridContainer" unique_id=1561928302]
+layout_mode = 2
+text = "Wings"
+
+[node name="LaserEyes" type="Button" parent="Panel/VBoxContainer2/GridContainer" unique_id=380037438]
+layout_mode = 2
+text = "Laser Eyes"
+
+[node name="AcidBlood" type="Button" parent="Panel/VBoxContainer2/GridContainer" unique_id=1684101442]
+layout_mode = 2
+text = "Acid Blood"
+
+[node name="ShadowClones" type="Button" parent="Panel/VBoxContainer2/GridContainer" unique_id=1659965392]
+layout_mode = 2
+text = "Shadow Clones"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer2" unique_id=1804086149]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="BiggerMuscles" type="Button" parent="Panel/VBoxContainer2/VBoxContainer" unique_id=1180198598]
+layout_mode = 2
+tooltip_text = "Builds stronger muscles so the mutant crushes the city harder every tick."
+text = "Bigger Muscles"
+
+[node name="UpgradeCountLabel" type="Label" parent="Panel/VBoxContainer2/VBoxContainer/BiggerMuscles" unique_id=1222237454]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -11.5
+offset_right = -50.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="GrowthHormones" type="Button" parent="Panel/VBoxContainer2/VBoxContainer" unique_id=913781756]
+layout_mode = 2
+text = "Growth Hormones"
+
+[node name="SharperClaws" type="Button" parent="Panel/VBoxContainer2/VBoxContainer" unique_id=1658332765]
+layout_mode = 2
+text = "Sharper Claws"
+
+[node name="ToughSkin" type="Button" parent="Panel/VBoxContainer2/VBoxContainer" unique_id=1206514663]
+layout_mode = 2
+text = "Tough Skin"
+
+[node name="FasterReflexes" type="Button" parent="Panel/VBoxContainer2/VBoxContainer" unique_id=990266990]
+layout_mode = 2
+text = "Faster Reflexes"
+
+[node name="ImprovedInstincts" type="Button" parent="Panel/VBoxContainer2/VBoxContainer" unique_id=1678066034]
+layout_mode = 2
+text = "Improved Instincts"
+
+[node name="PayTimer" type="Timer" parent="." unique_id=1904657323]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="PayTimer" to="." method="_on_pay_timer_timeout"]

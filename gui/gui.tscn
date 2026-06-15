@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cjxejhya6fhw5"]
+
+[ext_resource type="Script" uid="uid://bvfeqknubn81" path="res://gui/gui.gd" id="1_ioifv"]
+[ext_resource type="PackedScene" uid="uid://b0jp7uxdhagxg" path="res://gui/screens/logo_screen.tscn" id="2_ioifv"]
+
+[node name="GUI" type="CanvasLayer" unique_id=2042857289]
+script = ExtResource("1_ioifv")
+first_screen_scene = ExtResource("2_ioifv")
+
+[node name="ScreenRoot" type="Control" parent="." unique_id=2030208092]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="FadeRect" type="ColorRect" parent="." unique_id=310286036]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.10980392, 0.105882354, 0.105882354, 1)

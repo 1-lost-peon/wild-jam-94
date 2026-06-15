@@ -1,0 +1,53 @@
+[gd_resource type="Theme" format=3 uid="uid://d1stnglxqw51o"]
+
+[ext_resource type="Texture2D" uid="uid://bxxthpnriq8i7" path="res://gui/screens/menus/input_outline_rectangle.png" id="1_438sa"]
+[ext_resource type="Texture2D" uid="uid://c5v0amat6b0u8" path="res://gui/screens/menus/input_rectangle.png" id="2_c2vxb"]
+[ext_resource type="Texture2D" uid="uid://58qre1kmx235" path="res://gui/screens/menus/button_rectangle_gradient.png" id="2_icx8n"]
+[ext_resource type="Texture2D" uid="uid://un02ngkb16ub" path="res://world/button.png" id="2_ttrhi"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o18h0"]
+texture = ExtResource("2_icx8n")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_inoo2"]
+texture = ExtResource("2_ttrhi")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.063211
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ttrhi"]
+bg_color = Color(0.3029754, 0.70044035, 0.31362498, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icx8n"]
+bg_color = Color(0.25224635, 0.62911093, 0.91277874, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ttrhi"]
+texture = ExtResource("1_438sa")
+texture_margin_left = 16.0
+texture_margin_top = 16.223278
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_icx8n"]
+texture = ExtResource("2_c2vxb")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[resource]
+Button/font_sizes/font_size = 32
+Button/styles/hover = SubResource("StyleBoxTexture_o18h0")
+Button/styles/normal = SubResource("StyleBoxTexture_inoo2")
+Button/styles/pressed = SubResource("StyleBoxFlat_ttrhi")
+Button/styles/pressed_mirrored = SubResource("StyleBoxFlat_icx8n")
+LineEdit/colors/caret_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_placeholder_color = Color(0.52510077, 0.5251017, 0.5251009, 0.6)
+LineEdit/font_sizes/font_size = 32
+LineEdit/styles/focus = SubResource("StyleBoxTexture_ttrhi")
+LineEdit/styles/normal = SubResource("StyleBoxTexture_icx8n")
