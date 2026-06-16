@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bat2l6u1riu62"]
 
 [ext_resource type="Texture2D" uid="uid://xsvj6qjhowst" path="res://world/upgrade_box.png" id="1_riiuc"]
-[ext_resource type="Script" uid="uid://bwpnd20c5b74m" path="res://world/upgrade_panel.gd" id="2_r1x01"]
+[ext_resource type="Script" uid="uid://cohpqfpq5ytlm" path="res://world/mutation_panel.gd" id="2_riiuc"]
 [ext_resource type="Texture2D" uid="uid://bf7tbmt484ujh" path="res://world/upgrade_button_normal.png" id="3_onlxh"]
 [ext_resource type="Texture2D" uid="uid://cu54hd4djxsjp" path="res://world/upgrade_button_hover.png" id="4_pdeeh"]
 [ext_resource type="Texture2D" uid="uid://g0dxuhjjhq0d" path="res://world/destruction_points.png" id="5_qpw51"]
@@ -18,7 +18,7 @@ offset_bottom = 87.0
 size_flags_vertical = 3
 texture = ExtResource("1_riiuc")
 expand_mode = 1
-script = ExtResource("2_r1x01")
+script = ExtResource("2_riiuc")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2111779567]
 layout_mode = 1

@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://duk23si6l6ny1"]
 
 [ext_resource type="Script" uid="uid://bia1l67q1y6p6" path="res://world/world.gd" id="1_h5o24"]
-[ext_resource type="Resource" uid="uid://by6un5oq42mwc" path="res://world/upgrade.tres" id="2_ai45w"]
 [ext_resource type="PackedScene" uid="uid://b0mxt7mpea850" path="res://gui/screens/menus/main_menu.tscn" id="2_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://1wne7fuvffr6" path="res://world/city.tscn" id="4_mmdvd"]
 [ext_resource type="Texture2D" uid="uid://cgvt5csbowqsh" path="res://world/progress_bar_empty.png" id="5_ysn08"]
@@ -60,7 +59,7 @@ texture_margin_top = 16.0
 texture_margin_right = 16.0
 texture_margin_bottom = 16.0
 
-[node name="World" type="Control" unique_id=1273771794]
+[node name="World" type="Control" unique_id=1273771794 node_paths=PackedStringArray("list_of_upgrades")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,7 +67,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h5o24")
-upgrades = ExtResource("2_ai45w")
+upgrade_price = 5
+list_of_upgrades = {
+0: NodePath("MarginContainer/HBoxContainer/Shop/Upgrades/VBoxContainer/BiggerMuscles"),
+1: NodePath("MarginContainer/HBoxContainer/Shop/Upgrades/VBoxContainer/TougherSkin"),
+2: NodePath("MarginContainer/HBoxContainer/Shop/Upgrades/VBoxContainer/FasterRecovery"),
+3: NodePath("MarginContainer/HBoxContainer/Shop/Upgrades/VBoxContainer/SharperInstincts")
+}
 next_screen_scene = ExtResource("2_sc4t8")
 auto_advance = false
 
@@ -152,6 +157,7 @@ text = "Health:"
 horizontal_alignment = 1
 
 [node name="PlayerHealthBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/Main/Information/HBoxContainer/VBoxContainer" unique_id=1559783287]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxTexture_j34ew")
 theme_override_styles/fill = SubResource("StyleBoxTexture_p2iis")
@@ -211,6 +217,7 @@ texture = ExtResource("15_h8lre")
 stretch_mode = 5
 
 [node name="DestructionPointsAmount" type="Label" parent="MarginContainer/HBoxContainer/Main/Information/HBoxContainer/VBoxContainer2" unique_id=2119799744]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.8117647, 0.1764706, 1)
 theme_override_font_sizes/font_size = 50
@@ -289,136 +296,43 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="BiggerMuscles" parent="MarginContainer/HBoxContainer/Shop/Upgrades/VBoxContainer" unique_id=603949224 instance=ExtResource("14_dqqhb")]
+unique_name_in_owner = true
 layout_mode = 2
 upgrade_name = "BIGGER MUSCLES"
 
 [node name="TougherSkin" parent="MarginContainer/HBoxContainer/Shop/Upgrades/VBoxContainer" unique_id=458453134 instance=ExtResource("14_dqqhb")]
+unique_name_in_owner = true
 layout_mode = 2
 upgrade_name = "TOUGHER SKIN"
 
 [node name="FasterRecovery" parent="MarginContainer/HBoxContainer/Shop/Upgrades/VBoxContainer" unique_id=236426162 instance=ExtResource("14_dqqhb")]
+unique_name_in_owner = true
 layout_mode = 2
 upgrade_name = "FASTER RECOVERY"
 
 [node name="SharperInstincts" parent="MarginContainer/HBoxContainer/Shop/Upgrades/VBoxContainer" unique_id=510128654 instance=ExtResource("14_dqqhb")]
+unique_name_in_owner = true
 layout_mode = 2
 upgrade_name = "SHARPER INSTINCTS"
 
 [node name="City" parent="." unique_id=330325234 instance=ExtResource("4_mmdvd")]
 position = Vector2(142, -83)
+health = 100.0
+attack_damage = 4.2
+health_regeneration = 1.0
 
 [node name="Player" parent="." unique_id=1277995114 instance=ExtResource("7_sc4t8")]
 position = Vector2(128, 230)
-
-[node name="Panel" type="Panel" parent="." unique_id=84425893]
-visible = false
-layout_mode = 0
-offset_left = 672.0
-offset_top = 1.0
-offset_right = 1152.0
-offset_bottom = 650.0
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Panel" unique_id=1856050343]
-layout_mode = 0
-offset_right = 331.0
-offset_bottom = 358.0
-
-[node name="GridContainer" type="GridContainer" parent="Panel/VBoxContainer2" unique_id=248620851]
-layout_mode = 2
-columns = 3
-
-[node name="ExtraArms" type="Button" parent="Panel/VBoxContainer2/GridContainer" unique_id=1161977232]
-layout_mode = 2
-tooltip_text = "Grows another pair of arms and permanently increases destruction speed."
-text = "Extra Arms"
-
-[node name="NightVision" type="Button" parent="Panel/VBoxContainer2/GridContainer" unique_id=1438176957]
-layout_mode = 2
-text = "Night Vision"
-
-[node name="VenomGlands" type="Button" parent="Panel/VBoxContainer2/GridContainer" unique_id=1405779791]
-layout_mode = 2
-text = "Venom Glands"
-
-[node name="ExtraEyes" type="Button" parent="Panel/VBoxContainer2/GridContainer" unique_id=2034632160]
-layout_mode = 2
-text = "Extra Eyes"
-
-[node name="BoneSpikes" type="Button" parent="Panel/VBoxContainer2/GridContainer" unique_id=2115143365]
-layout_mode = 2
-text = "Bone Spikes"
-
-[node name="Wings" type="Button" parent="Panel/VBoxContainer2/GridContainer" unique_id=1561928302]
-layout_mode = 2
-text = "Wings"
-
-[node name="LaserEyes" type="Button" parent="Panel/VBoxContainer2/GridContainer" unique_id=380037438]
-layout_mode = 2
-text = "Laser Eyes"
-
-[node name="AcidBlood" type="Button" parent="Panel/VBoxContainer2/GridContainer" unique_id=1684101442]
-layout_mode = 2
-text = "Acid Blood"
-
-[node name="ShadowClones" type="Button" parent="Panel/VBoxContainer2/GridContainer" unique_id=1659965392]
-layout_mode = 2
-text = "Shadow Clones"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer2" unique_id=1804086149]
-layout_mode = 2
-
-[node name="BiggerMuscles" type="Button" parent="Panel/VBoxContainer2/VBoxContainer" unique_id=1180198598]
-layout_mode = 2
-tooltip_text = "Builds stronger muscles so the mutant crushes the city harder every tick."
-text = "Bigger Muscles"
-
-[node name="UpgradeCountLabel" type="Label" parent="Panel/VBoxContainer2/VBoxContainer/BiggerMuscles" unique_id=1222237454]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -90.0
-offset_top = -11.5
-offset_right = -50.0
-offset_bottom = 11.5
-grow_horizontal = 0
-grow_vertical = 2
-text = "0"
-horizontal_alignment = 1
-
-[node name="GrowthHormones" type="Button" parent="Panel/VBoxContainer2/VBoxContainer" unique_id=913781756]
-layout_mode = 2
-text = "Growth Hormones"
-
-[node name="SharperClaws" type="Button" parent="Panel/VBoxContainer2/VBoxContainer" unique_id=1658332765]
-layout_mode = 2
-text = "Sharper Claws"
-
-[node name="ToughSkin" type="Button" parent="Panel/VBoxContainer2/VBoxContainer" unique_id=1206514663]
-layout_mode = 2
-text = "Tough Skin"
-
-[node name="FasterReflexes" type="Button" parent="Panel/VBoxContainer2/VBoxContainer" unique_id=990266990]
-layout_mode = 2
-text = "Faster Reflexes"
-
-[node name="ImprovedInstincts" type="Button" parent="Panel/VBoxContainer2/VBoxContainer" unique_id=1678066034]
-layout_mode = 2
-text = "Improved Instincts"
-
-[node name="PayTimer" type="Timer" parent="." unique_id=1904657323]
-wait_time = 3.0
-autostart = true
+attack_damage = 1.0
+health_regeneration = 2.3
 
 [node name="LoseTimer" type="Timer" parent="." unique_id=1681235984]
 
 [node name="TurnTimer" type="Timer" parent="." unique_id=1670679506]
 unique_name_in_owner = true
 wait_time = 0.5
+autostart = true
 
 [connection signal="toggled" from="MarginContainer/HBoxContainer/Main/Information/HBoxContainer/VBoxContainer/AttackRestButton" to="." method="_on_attack_rest_button_toggled"]
-[connection signal="timeout" from="PayTimer" to="." method="_on_pay_timer_timeout"]
 [connection signal="timeout" from="LoseTimer" to="." method="_on_lose_timer_timeout"]
 [connection signal="timeout" from="TurnTimer" to="." method="_on_turn_timer_timeout"]
