@@ -4,7 +4,9 @@
 [ext_resource type="Resource" uid="uid://by6un5oq42mwc" path="res://world/upgrade.tres" id="2_ai45w"]
 [ext_resource type="PackedScene" uid="uid://b0mxt7mpea850" path="res://gui/screens/menus/main_menu.tscn" id="2_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://1wne7fuvffr6" path="res://world/city.tscn" id="4_mmdvd"]
+[ext_resource type="Texture2D" uid="uid://cgvt5csbowqsh" path="res://world/progress_bar_empty.png" id="5_ysn08"]
 [ext_resource type="Texture2D" uid="uid://bulqxruammsca" path="res://world/border_box.png" id="6_fn3g3"]
+[ext_resource type="Texture2D" uid="uid://0vdv5o0a8bxd" path="res://world/progress_bar_filled.png" id="6_m0cxt"]
 [ext_resource type="Texture2D" uid="uid://un02ngkb16ub" path="res://world/button.png" id="7_4papg"]
 [ext_resource type="Texture2D" uid="uid://bn5lduibjyj45" path="res://world/border_box_2.png" id="7_ai45w"]
 [ext_resource type="PackedScene" uid="uid://cxm5iyfnt55ym" path="res://world/player.tscn" id="7_sc4t8"]
@@ -12,6 +14,23 @@
 [ext_resource type="Texture2D" uid="uid://ppne57jsnn1h" path="res://world/button_2.png" id="8_fyhu2"]
 [ext_resource type="Texture2D" uid="uid://db6xlhoygi665" path="res://world/button_4.png" id="10_ov2xu"]
 [ext_resource type="Texture2D" uid="uid://do7bm8223kl7i" path="res://world/bolt.png" id="11_mad0u"]
+[ext_resource type="PackedScene" uid="uid://bat2l6u1riu62" path="res://world/mutation_panel.tscn" id="12_b2suy"]
+[ext_resource type="PackedScene" uid="uid://7dh012inqiia" path="res://world/upgrade_panel.tscn" id="14_dqqhb"]
+[ext_resource type="Texture2D" uid="uid://g0dxuhjjhq0d" path="res://world/destruction_points.png" id="15_h8lre"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j34ew"]
+texture = ExtResource("5_ysn08")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p2iis"]
+texture = ExtResource("6_m0cxt")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ov2xu"]
 texture = ExtResource("7_4papg")
@@ -53,60 +72,246 @@ upgrades = ExtResource("2_ai45w")
 next_screen_scene = ExtResource("2_sc4t8")
 auto_advance = false
 
-[node name="City" parent="." unique_id=330325234 instance=ExtResource("4_mmdvd")]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=676829462]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.011764706, 0, 0.101960786, 1)
 
-[node name="Player" parent="." unique_id=1277995114 instance=ExtResource("7_sc4t8")]
-position = Vector2(119, 365)
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=185975665]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -33.5
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
 
-[node name="DestructionPoints" type="Label" parent="." unique_id=1225627915]
-layout_mode = 0
-offset_left = 29.0
-offset_top = 17.0
-offset_right = 177.0
-offset_bottom = 40.0
-text = "Destruction Points:"
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=2013379736]
+layout_mode = 2
 
-[node name="Amount" type="Label" parent="." unique_id=108023969]
-layout_mode = 0
-offset_left = 188.0
-offset_top = 18.0
-offset_right = 228.0
-offset_bottom = 41.0
+[node name="Main" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1017038312]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/separation = 4
+
+[node name="Graphics" type="NinePatchRect" parent="MarginContainer/HBoxContainer/Main" unique_id=1025451324]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+texture = ExtResource("6_fn3g3")
+region_rect = Rect2(0, 0, 375.17697, 118.01227)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Information" type="NinePatchRect" parent="MarginContainer/HBoxContainer/Main" unique_id=557158493]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture = ExtResource("6_fn3g3")
+region_rect = Rect2(0, 0, 375.17697, 118.01227)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Main/Information" unique_id=339815030]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 41.0
+offset_top = 11.5
+offset_right = -38.0
+offset_bottom = -8.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 128
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Main/Information/HBoxContainer" unique_id=1155514946]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="HealthLabel" type="Label" parent="MarginContainer/HBoxContainer/Main/Information/HBoxContainer/VBoxContainer" unique_id=1213136856]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72156864, 0, 0.047058824, 1)
+theme_override_font_sizes/font_size = 25
+text = "Health:"
+horizontal_alignment = 1
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/Main/Information/HBoxContainer/VBoxContainer" unique_id=1559783287]
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxTexture_j34ew")
+theme_override_styles/fill = SubResource("StyleBoxTexture_p2iis")
+value = 50.0
+
+[node name="AttackRestButton" type="Button" parent="MarginContainer/HBoxContainer/Main/Information/HBoxContainer/VBoxContainer" unique_id=632441545]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+tooltip_text = "Toggle between attacking the city and resting to recover health."
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_ov2xu")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_fyhu2")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mad0u")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_ocfjn")
+toggle_mode = true
+text = "Resting - Click to Attack"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Main/Information/HBoxContainer/VBoxContainer/AttackRestButton" unique_id=1101199632]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 40.0
+offset_top = -16.5
+offset_right = 54.0
+offset_bottom = 7.5
+grow_vertical = 2
+texture = ExtResource("11_mad0u")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer/Main/Information/HBoxContainer/VBoxContainer/AttackRestButton" unique_id=259708416]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -16.5
+offset_right = -40.0
+offset_bottom = 7.5
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("11_mad0u")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="VBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Main/Information/HBoxContainer" unique_id=1720753898]
+layout_mode = 2
+
+[node name="DestructionPointsIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/Main/Information/HBoxContainer/VBoxContainer2" unique_id=379990410]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("15_h8lre")
+stretch_mode = 5
+
+[node name="DestructionPointsAmount" type="Label" parent="MarginContainer/HBoxContainer/Main/Information/HBoxContainer/VBoxContainer2" unique_id=2119799744]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.8117647, 0.1764706, 1)
+theme_override_font_sizes/font_size = 50
 text = "0"
 
-[node name="HealthLabel" type="Label" parent="." unique_id=2088512592]
-layout_mode = 0
-offset_left = 29.0
-offset_top = 50.0
-offset_right = 177.0
-offset_bottom = 73.0
-text = "Health:"
+[node name="Shop" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1754103396]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 
-[node name="HealthBar" type="ProgressBar" parent="." unique_id=1292779330]
-layout_mode = 0
-offset_left = 188.0
-offset_top = 50.0
-offset_right = 328.0
-offset_bottom = 77.0
-value = 100.0
+[node name="Mutations" type="NinePatchRect" parent="MarginContainer/HBoxContainer/Shop" unique_id=657941424]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("7_ai45w")
+region_rect = Rect2(0, 0, 375.17697, 118.01227)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
 
-[node name="CityDestroyedLabel" type="Label" parent="." unique_id=2130945965]
-layout_mode = 0
-offset_left = 29.0
-offset_top = 81.0
-offset_right = 177.0
-offset_bottom = 104.0
-text = "City Destroyed:"
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/Shop/Mutations" unique_id=458269872]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 19.5
+offset_right = -21.0
+offset_bottom = -19.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
 
-[node name="CityDestroyedAmount" type="Label" parent="." unique_id=609010477]
-layout_mode = 0
-offset_left = 188.0
-offset_top = 81.0
-offset_right = 257.0
-offset_bottom = 104.0
-text = "0%"
+[node name="ExtraArms" parent="MarginContainer/HBoxContainer/Shop/Mutations/GridContainer" unique_id=1293284806 instance=ExtResource("12_b2suy")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+upgrade_name = "Extra Arms"
+
+[node name="MutationPanel2" parent="MarginContainer/HBoxContainer/Shop/Mutations/GridContainer" unique_id=990431917 instance=ExtResource("12_b2suy")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MutationPanel3" parent="MarginContainer/HBoxContainer/Shop/Mutations/GridContainer" unique_id=1476011280 instance=ExtResource("12_b2suy")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MutationPanel4" parent="MarginContainer/HBoxContainer/Shop/Mutations/GridContainer" unique_id=1545505987 instance=ExtResource("12_b2suy")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Upgrades" type="NinePatchRect" parent="MarginContainer/HBoxContainer/Shop" unique_id=1352007704]
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("7_ai45w")
+region_rect = Rect2(0, 0, 375.17697, 118.01227)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Shop/Upgrades" unique_id=1394606043]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 22.5
+offset_right = -24.0
+offset_bottom = -17.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BiggerMuscles" parent="MarginContainer/HBoxContainer/Shop/Upgrades/VBoxContainer" unique_id=603949224 instance=ExtResource("14_dqqhb")]
+layout_mode = 2
+upgrade_name = "BIGGER MUSCLES"
+
+[node name="TougherSkin" parent="MarginContainer/HBoxContainer/Shop/Upgrades/VBoxContainer" unique_id=458453134 instance=ExtResource("14_dqqhb")]
+layout_mode = 2
+upgrade_name = "TOUGHER SKIN"
+
+[node name="FasterRecovery" parent="MarginContainer/HBoxContainer/Shop/Upgrades/VBoxContainer" unique_id=236426162 instance=ExtResource("14_dqqhb")]
+layout_mode = 2
+upgrade_name = "FASTER RECOVERY"
+
+[node name="SharperInstincts" parent="MarginContainer/HBoxContainer/Shop/Upgrades/VBoxContainer" unique_id=510128654 instance=ExtResource("14_dqqhb")]
+layout_mode = 2
+upgrade_name = "SHARPER INSTINCTS"
+
+[node name="City" parent="." unique_id=330325234 instance=ExtResource("4_mmdvd")]
+position = Vector2(142, -83)
+
+[node name="Player" parent="." unique_id=1277995114 instance=ExtResource("7_sc4t8")]
+position = Vector2(128, 230)
 
 [node name="Panel" type="Panel" parent="." unique_id=84425893]
+visible = false
 layout_mode = 0
 offset_left = 672.0
 offset_top = 1.0
@@ -213,137 +418,7 @@ autostart = true
 unique_name_in_owner = true
 wait_time = 0.5
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=676829462]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.011764706, 0, 0.101960786, 1)
-
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=185975665]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=2013379736]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1017038312]
-custom_minimum_size = Vector2(800, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 4
-
-[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=557158493]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("6_fn3g3")
-region_rect = Rect2(0, 0, 375.17697, 118.01227)
-patch_margin_left = 16
-patch_margin_top = 16
-patch_margin_right = 16
-patch_margin_bottom = 16
-
-[node name="NinePatchRect2" type="NinePatchRect" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1025451324]
-custom_minimum_size = Vector2(0, 400)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("6_fn3g3")
-region_rect = Rect2(0, 0, 375.17697, 118.01227)
-patch_margin_left = 16
-patch_margin_top = 16
-patch_margin_right = 16
-patch_margin_bottom = 16
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1601735229]
-layout_mode = 2
-theme_override_constants/margin_left = 128
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 128
-
-[node name="AttackRestButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer" unique_id=632441545]
-unique_name_in_owner = true
-layout_mode = 2
-tooltip_text = "Toggle between attacking the city and resting to recover health."
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxTexture_ov2xu")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_fyhu2")
-theme_override_styles/hover = SubResource("StyleBoxTexture_mad0u")
-theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_ocfjn")
-toggle_mode = true
-text = "Resting - Click to Attack"
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/AttackRestButton" unique_id=1101199632]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 40.0
-offset_top = -16.5
-offset_right = 54.0
-offset_bottom = 7.5
-grow_vertical = 2
-texture = ExtResource("11_mad0u")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/AttackRestButton" unique_id=259708416]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -54.0
-offset_top = -16.5
-offset_right = -40.0
-offset_bottom = 7.5
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("11_mad0u")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1754103396]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=657941424]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("7_ai45w")
-region_rect = Rect2(0, 0, 375.17697, 118.01227)
-patch_margin_left = 16
-patch_margin_top = 16
-patch_margin_right = 16
-patch_margin_bottom = 16
-
-[node name="NinePatchRect2" type="NinePatchRect" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1352007704]
-custom_minimum_size = Vector2(0, 400)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("7_ai45w")
-region_rect = Rect2(0, 0, 375.17697, 118.01227)
-patch_margin_left = 16
-patch_margin_top = 16
-patch_margin_right = 16
-patch_margin_bottom = 16
-
+[connection signal="toggled" from="MarginContainer/HBoxContainer/Main/Information/HBoxContainer/VBoxContainer/AttackRestButton" to="." method="_on_attack_rest_button_toggled"]
 [connection signal="timeout" from="PayTimer" to="." method="_on_pay_timer_timeout"]
 [connection signal="timeout" from="LoseTimer" to="." method="_on_lose_timer_timeout"]
 [connection signal="timeout" from="TurnTimer" to="." method="_on_turn_timer_timeout"]
-[connection signal="toggled" from="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/AttackRestButton" to="." method="_on_attack_rest_button_toggled"]

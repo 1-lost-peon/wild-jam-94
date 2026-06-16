@@ -5,7 +5,6 @@
 
 [node name="GUI" type="CanvasLayer" unique_id=2042857289]
 script = ExtResource("1_ioifv")
-first_screen_scene = ExtResource("2_ioifv")
 
 [node name="ScreenRoot" type="Control" parent="." unique_id=2030208092]
 layout_mode = 3

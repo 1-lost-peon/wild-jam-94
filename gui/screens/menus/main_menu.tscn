@@ -12,7 +12,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_owke6")
-next_screen_scene = ExtResource("2_x3kiw")
 auto_advance = false
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1302342146]

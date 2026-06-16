@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [gui]
 
 theme/custom="uid://d1stnglxqw51o"
+theme/custom_font="uid://bmo3tyrskg1f7"
 
 [physics]
 

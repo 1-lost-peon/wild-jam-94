@@ -2,6 +2,10 @@ extends ScreenState
 
 @export var upgrades: Upgrade
 
+enum Upgrade {
+	BIGGER_MUSCLES,
+}
+
 const BASE_CITY_DAMAGE_PER_TICK := 0.001
 const BASE_CITY_RECOVERY_PER_TICK := 0.003
 const BASE_POINT_REWARD_POWER := 2
@@ -12,6 +16,11 @@ const BASE_POINT_REWARD_POWER := 2
 @onready var player: Node2D = $Player
 @onready var turn_timer: Timer = %TurnTimer
 @onready var attack_rest_button: Button = %AttackRestButton
+
+@onready var bigger_muscles: TextureRect = %BiggerMuscles
+@onready var tougher_skin: TextureRect = %TougherSkin
+@onready var faster_recovery: TextureRect = %FasterRecovery
+@onready var sharper_instincts: TextureRect = %SharperInstincts
 
 
 var destruction_points: int = 0
@@ -164,11 +173,18 @@ var disabled_one_time_buttons := {
 
 func _ready() -> void:
 	destruction_points = 0
+	bigger_muscles.purchase_button.pressed.connect(_on_upgrade_purchased, Upgrade.BIGGER_MUSCLES)
 	#_setup_repeatable_upgrade_buttons()
 	#_setup_one_time_upgrade_buttons()
 	#_setup_disabled_one_time_buttons()
 	#_set_attack_mode(false)
 	#_update_ui()
+
+func _on_upgrade_purchased(upgrade: Upgrade) -> void:
+	match upgrade:
+		Upgrade.BIGGER_MUSCLES:
+			pass
+
 
 #func _on_pay_timer_timeout() -> void:
 	#var current_progress := _get_city_destruction_progress()
