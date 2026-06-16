@@ -13,5 +13,9 @@ func update_price(new_price: String) -> void:
 	purchase_button.text = new_price + "  "
 
 
+func increase_upgrade_level() -> void:
+	upgrade_level.text = str(int(upgrade_level.text) + 1)
+
+
 func toggle_disable(toggled_on: bool) -> void:
 	purchase_button.disabled = toggled_on

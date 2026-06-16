@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://d0cis4hgjd436"]
 
 [ext_resource type="Script" uid="uid://d3yyeg35wb8au" path="res://gui/screens/screen_state.gd" id="1_yphyx"]
-[ext_resource type="PackedScene" uid="uid://b0mxt7mpea850" path="res://gui/screens/menus/main_menu.tscn" id="2_fd856"]
 [ext_resource type="Texture2D" uid="uid://b8abosgjyijqj" path="res://gui/screens/GWJ-Half-Logo-Orange.svg" id="3_el318"]
 
 [node name="WildScreen" type="Control" unique_id=1714585361]
@@ -12,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yphyx")
-next_screen_scene = ExtResource("2_fd856")
+next_screen_path = "uid://b0mxt7mpea850"
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=233191046]
 layout_mode = 1

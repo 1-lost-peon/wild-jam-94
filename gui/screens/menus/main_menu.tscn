@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bdbx32dxa1ti1" path="res://gui/screens/menus/main_menu.gd" id="1_owke6"]
 [ext_resource type="Texture2D" uid="uid://bm66lekbmw6qc" path="res://gui/screens/menus/city.jpg" id="2_owke6"]
-[ext_resource type="PackedScene" uid="uid://duk23si6l6ny1" path="res://world/world.tscn" id="2_x3kiw"]
 
 [node name="MainMenu" type="Control" unique_id=1600305850]
 layout_mode = 3
@@ -12,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_owke6")
+next_screen_path = "uid://duk23si6l6ny1"
 auto_advance = false
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1302342146]

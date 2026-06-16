@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://d3yyeg35wb8au" path="res://gui/screens/screen_state.gd" id="1_epru0"]
 [ext_resource type="FontFile" uid="uid://sn1u3rcpj0ca" path="res://gui/MORPHEUS.TTF" id="2_3tqda"]
-[ext_resource type="PackedScene" uid="uid://d0cis4hgjd436" path="res://gui/screens/wild_screen.tscn" id="2_hof1u"]
 [ext_resource type="Texture2D" uid="uid://c0dga0a5xgpxc" path="res://gui/screens/logo.png" id="3_hof1u"]
 
 [node name="LogoScreen" type="Control" unique_id=1714585361]
@@ -13,7 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_epru0")
-next_screen_scene = ExtResource("2_hof1u")
+next_screen_path = "uid://d0cis4hgjd436"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=56614040]
 layout_mode = 1

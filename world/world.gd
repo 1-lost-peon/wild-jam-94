@@ -13,6 +13,10 @@ enum Upgrade {
 }
 
 const PRICE_INCREASE: float = 1.5
+const BIGGER_MUSCLES_MODIFIER: float = 1.25
+const TOUGHER_SKIN_MODIFIER: float = 1.5
+const FASTER_RECOVERY_MODIFIER: float = 3
+const SHARPER_INSTINCTS_MODIFIER: float = 0.75
 
 @onready var city: Node2D = $City
 @onready var player: Node2D = $Player
@@ -27,6 +31,10 @@ const PRICE_INCREASE: float = 1.5
 # TODO: I should create functions for updating the different parts of UI (i.e. update_destruction_points(1))
 var health_bar: ProgressBar
 var city_destroyed_amount: Label
+var is_game_over: bool = false
+var player_lost: bool = true
+var lose_scene_path: String = "res://gui/screens/lose_screen.tscn"
+var win_scene_path: String = "res://gui/screens/win_screen.tscn"
 
 
 func _ready() -> void:
@@ -71,10 +79,21 @@ func _on_upgrade_purchased(upgrade: int) -> void:
 	
 	for upgrade_type in list_of_upgrades:
 		list_of_upgrades[upgrade_type].update_price(str(int(upgrade_price)))
+		 
 	
 	match upgrade:
 		Upgrade.BIGGER_MUSCLES:
-			player.attack_damage = player.attack_damage * 1.05
+			player.attack_damage = player.attack_damage * BIGGER_MUSCLES_MODIFIER
+			list_of_upgrades[Upgrade.BIGGER_MUSCLES].increase_upgrade_level()
+		Upgrade.TOUGHER_SKIN:
+			player.max_health = player.max_health * TOUGHER_SKIN_MODIFIER
+			list_of_upgrades[Upgrade.TOUGHER_SKIN].increase_upgrade_level()
+		Upgrade.FASTER_RECOVERY:
+			player.health_regeneration = player.health_regeneration * FASTER_RECOVERY_MODIFIER
+			list_of_upgrades[Upgrade.FASTER_RECOVERY].increase_upgrade_level()
+		Upgrade.SHARPER_INSTINCTS:
+			city.health_regeneration = city.health_regeneration * SHARPER_INSTINCTS_MODIFIER
+			list_of_upgrades[Upgrade.SHARPER_INSTINCTS].increase_upgrade_level()
 
 
 func _on_lose_timer_timeout() -> void:
@@ -82,6 +101,16 @@ func _on_lose_timer_timeout() -> void:
 
 
 func _on_turn_timer_timeout() -> void:
+	if player.health == 0:		
+		is_game_over = true
+	
+	if is_game_over:
+		if player_lost:
+			next_screen_path = lose_scene_path
+		else:
+			next_screen_path = win_scene_path
+		go_to()
+	
 	if destruction_points < upgrade_price:
 		for upgrade_type in list_of_upgrades:
 			list_of_upgrades[upgrade_type].toggle_disable(true)
@@ -93,7 +122,7 @@ func _on_turn_timer_timeout() -> void:
 	if player.is_attacking:
 		update_player_health(player.health - city.attack_damage)
 		update_destruction_points(destruction_points + 1)
-		print(city.health)
+		
 		update_city_health(city.health - player.attack_damage)
 		
 	else:
@@ -102,6 +131,9 @@ func _on_turn_timer_timeout() -> void:
 
 
 func _on_attack_rest_button_toggled(toggled_on: bool) -> void:
+	if is_game_over:
+		return
+		
 	player.is_attacking = toggled_on
 	
 	if player.is_attacking:

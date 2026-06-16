@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@export var first_screen_scene: PackedScene
+@export var first_screen_path: String
 @export_range(0.0, 5.0, 0.05) var fade_duration := 0.35
 
 var current_screen_state: ScreenState
@@ -15,15 +15,15 @@ func _ready() -> void:
 	_fade_rect.visible = true
 	_fade_rect.modulate.a = 1.0
 
-	if first_screen_scene == null:
+	if first_screen_path == null:
 		push_warning("GUI has no first_screen_scene assigned.")
 		return
 
-	await change_screen(first_screen_scene)
+	await change_screen(first_screen_path)
 
 
-func change_screen(next_scene: PackedScene) -> void:
-	if _is_changing or next_scene == null:
+func change_screen(next_scene_path: String) -> void:
+	if _is_changing or next_scene_path == null:
 		return
 
 	_is_changing = true
@@ -35,26 +35,31 @@ func change_screen(next_scene: PackedScene) -> void:
 		current_screen_state.queue_free()
 		current_screen_state = null
 
-	var instance := next_scene.instantiate()
-	if not instance is ScreenState:
-		push_error("Screen scene must have a root node with the ScreenState script attached: %s" % next_scene.resource_path)
-		instance.queue_free()
+	var next_scene := load(next_scene_path) as PackedScene
+	
+	if next_scene != null:
+		var instance := next_scene.instantiate()
+		
+		if not instance is ScreenState:
+			push_error("Screen scene must have a root node with the ScreenState script attached: %s" % next_scene.resource_path)
+			instance.queue_free()
+			_is_changing = false
+			return
+
+		current_screen_state = instance as ScreenState
+		_screen_root.add_child(current_screen_state)
+		current_screen_state.screen_change_requested.connect(_on_screen_change_requested)
+
+		# Fade in, then let the state begin its own timer/input logic.
+		await _fade_to(0.0)
+		current_screen_state.enter()
+
 		_is_changing = false
-		return
-
-	current_screen_state = instance as ScreenState
-	_screen_root.add_child(current_screen_state)
-	current_screen_state.screen_change_requested.connect(_on_screen_change_requested)
-
-	# Fade in, then let the state begin its own timer/input logic.
-	await _fade_to(0.0)
-	current_screen_state.enter()
-
-	_is_changing = false
 
 
-func _on_screen_change_requested(next_scene: PackedScene) -> void:
-	await change_screen(next_scene)
+func _on_screen_change_requested(next_scene_path: String) -> void:
+	call_deferred("change_screen", next_scene_path)
+	#await change_screen(next_scene_path)
 
 
 #func _build_runtime_nodes() -> void:
