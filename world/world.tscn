@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://g0dxuhjjhq0d" path="res://world/destruction_points.png" id="15_h8lre"]
 [ext_resource type="AudioStream" uid="uid://crdl6cy5w2v0p" path="res://world/audio/select_002.ogg" id="16_h8lre"]
 [ext_resource type="AudioStream" uid="uid://cqtu3p1nnfooj" path="res://world/audio/switch_002.ogg" id="17_ysn08"]
+[ext_resource type="AudioStream" uid="uid://b7pa1g2ug4cn0" path="res://world/TNMT God.WAV" id="18_m0cxt"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j34ew"]
 texture = ExtResource("5_ysn08")
@@ -343,6 +344,11 @@ pitch_scale = 0.5
 
 [node name="TogglePlayer" type="AudioStreamPlayer" parent="." unique_id=775562311]
 stream = ExtResource("17_ysn08")
+
+[node name="MainPlayer" type="AudioStreamPlayer" parent="." unique_id=751426322]
+stream = ExtResource("18_m0cxt")
+autoplay = true
+bus = &"Music"
 
 [connection signal="toggled" from="MarginContainer/HBoxContainer/Main/Information/HBoxContainer/VBoxContainer/AttackRestButton" to="." method="_on_attack_rest_button_toggled"]
 [connection signal="timeout" from="LoseTimer" to="." method="_on_lose_timer_timeout"]
