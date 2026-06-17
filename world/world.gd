@@ -101,13 +101,19 @@ func _on_lose_timer_timeout() -> void:
 
 
 func _on_turn_timer_timeout() -> void:
-	if player.health == 0:		
+	print(city.health)
+	if player.health == 0:
 		is_game_over = true
+	
+	if city.health == 0:
+		is_game_over = true
+		player_lost = false
 	
 	if is_game_over:
 		if player_lost:
 			next_screen_path = lose_scene_path
 		else:
+			print("test")
 			next_screen_path = win_scene_path
 		go_to()
 	

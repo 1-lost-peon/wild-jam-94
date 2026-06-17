@@ -1,3 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+/build/
+C:\Users\joshu\Documents\GameDev\wild-jam-94\build
