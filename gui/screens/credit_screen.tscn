@@ -1,0 +1,199 @@
+[gd_scene format=3 uid="uid://cvorgc2e6es0t"]
+
+[ext_resource type="Script" uid="uid://blequb7acux3c" path="res://gui/screens/credit_screen.gd" id="1_sp758"]
+[ext_resource type="Texture2D" uid="uid://b0h42fr2vbvy4" path="res://gui/screens/credits_1.png" id="2_sp758"]
+[ext_resource type="Texture2D" uid="uid://diugxdmqkmvxt" path="res://gui/screens/credits_2.png" id="3_hlfcy"]
+[ext_resource type="Texture2D" uid="uid://biwdq8l1q4fxa" path="res://gui/screens/credits_3.png" id="4_fev8w"]
+
+[sub_resource type="Animation" id="Animation_hlfcy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Art:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(59, 519)]
+}
+
+[sub_resource type="Animation" id="Animation_fev8w"]
+resource_name = "scroll"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Art:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.99),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -1590)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(59, 519), Vector2(59, -2478)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1h0mf"]
+_data = {
+&"RESET": SubResource("Animation_hlfcy"),
+&"scroll": SubResource("Animation_fev8w")
+}
+
+[node name="CreditScreen" type="Control" unique_id=1714585361]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sp758")
+next_screen_path = "uid://b0mxt7mpea850"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=233191046]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 910.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.10980392, 0.105882354, 0.105882354, 1)
+
+[node name="Timer" type="Timer" parent="." unique_id=240101921]
+
+[node name="Art" type="Control" parent="." unique_id=1279288515]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Art" unique_id=1345204870]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -670.0
+offset_top = 487.01392
+offset_right = -232.68579
+offset_bottom = 814.99963
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.71383965
+texture = ExtResource("2_sp758")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Art" unique_id=767672791]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 52.0
+offset_top = 52.013916
+offset_right = 489.3142
+offset_bottom = 379.99963
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.51138145
+texture = ExtResource("3_hlfcy")
+expand_mode = 1
+flip_h = true
+
+[node name="TextureRect3" type="TextureRect" parent="Art" unique_id=1052961040]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.0
+offset_top = 695.0139
+offset_right = 605.0867
+offset_bottom = 1257.9996
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_fev8w")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="." unique_id=1693652994]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -517.0
+offset_top = 519.0
+offset_right = 517.0
+offset_bottom = 2348.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "CREDITS
+
+WILD JAM 94 ENTRY
+
+A game made in 7 days by:
+
+Game Design
+Lost Peon
+
+Programming
+Lost Peon
+
+Art
+Lost Peon
+
+Music & Sound
+Your Name / Asset Pack Name
+
+Assets
+flaticon - Lightning Bolt
+Modified Kenney UI Assets (https://kenney.nl/)
+Google Fonts - Barlow font
+
+Special Thanks
+Playtesters
+Friends
+The Wild Jam Community
+
+Made with Godot Engine
+
+Thank you for playing!"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1638030742]
+libraries/ = SubResource("AnimationLibrary_1h0mf")
+speed_scale = 0.25
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

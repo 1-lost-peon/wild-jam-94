@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jb410")
-next_screen_path = "uid://b0mxt7mpea850"
+next_screen_path = "uid://cvorgc2e6es0t"
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1501280575]
 layout_mode = 1

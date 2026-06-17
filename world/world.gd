@@ -39,6 +39,7 @@ var win_scene_path: String = "res://gui/screens/win_screen.tscn"
 
 func _ready() -> void:
 	update_destruction_points(0)
+	update_player_health(player.max_health)
 	
 	for upgrade_type in list_of_upgrades:
 		list_of_upgrades[upgrade_type].purchase_button.pressed.connect(_on_upgrade_purchased.bind(upgrade_type))
