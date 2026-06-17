@@ -1,22 +1,12 @@
 [gd_scene format=3 uid="uid://1wne7fuvffr6"]
 
-[ext_resource type="Shader" uid="uid://ik6sm6l1vpym" path="res://world/city_destruction.gdshader" id="1_2oj8t"]
 [ext_resource type="Script" uid="uid://dboq3vess8kkn" path="res://world/city.gd" id="1_vejxk"]
 [ext_resource type="Texture2D" uid="uid://6k234vubsyav" path="res://world/destroyed_city.png" id="2_vejxk"]
 [ext_resource type="Texture2D" uid="uid://bm66lekbmw6qc" path="res://gui/screens/menus/city.jpg" id="3_ln0wb"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hl2qk"]
-shader = ExtResource("1_2oj8t")
-shader_parameter/texture_a = ExtResource("2_vejxk")
-shader_parameter/texture_b = ExtResource("3_ln0wb")
-shader_parameter/progress = 0.0
-shader_parameter/feather = 0.0
-
-[node name="City" type="Node2D" unique_id=330325234]
+[node name="TextureProgressBar" type="TextureProgressBar" unique_id=424146668]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_under = ExtResource("3_ln0wb")
+texture_progress = ExtResource("2_vejxk")
 script = ExtResource("1_vejxk")
-
-[node name="City" type="Sprite2D" parent="." unique_id=2065468891]
-material = SubResource("ShaderMaterial_hl2qk")
-position = Vector2(349.5, 304.5)
-scale = Vector2(1.0466238, 1.0485715)
-texture = ExtResource("3_ln0wb")

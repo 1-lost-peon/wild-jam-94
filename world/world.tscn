@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://bat2l6u1riu62" path="res://world/mutation_panel.tscn" id="12_b2suy"]
 [ext_resource type="PackedScene" uid="uid://7dh012inqiia" path="res://world/upgrade_panel.tscn" id="14_dqqhb"]
 [ext_resource type="Texture2D" uid="uid://g0dxuhjjhq0d" path="res://world/destruction_points.png" id="15_h8lre"]
+[ext_resource type="AudioStream" uid="uid://crdl6cy5w2v0p" path="res://world/audio/select_002.ogg" id="16_h8lre"]
+[ext_resource type="AudioStream" uid="uid://cqtu3p1nnfooj" path="res://world/audio/switch_002.ogg" id="17_ysn08"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j34ew"]
 texture = ExtResource("5_ysn08")
@@ -66,6 +68,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h5o24")
+upgrade_price = 5
 list_of_upgrades = {
 0: NodePath("MarginContainer/HBoxContainer/Shop/Upgrades/VBoxContainer/BiggerMuscles"),
 1: NodePath("MarginContainer/HBoxContainer/Shop/Upgrades/VBoxContainer/TougherSkin"),
@@ -313,7 +316,11 @@ layout_mode = 2
 upgrade_name = "SHARPER INSTINCTS"
 
 [node name="City" parent="." unique_id=330325234 instance=ExtResource("4_mmdvd")]
-position = Vector2(142, -83)
+layout_mode = 0
+offset_left = 191.0
+offset_top = 53.0
+offset_right = 813.0
+offset_bottom = 403.0
 health = 100.0
 attack_damage = 4.2
 health_regeneration = 1.0
@@ -329,6 +336,13 @@ health_regeneration = 2.3
 unique_name_in_owner = true
 wait_time = 0.5
 autostart = true
+
+[node name="ButtonPlayer" type="AudioStreamPlayer" parent="." unique_id=763236999]
+stream = ExtResource("16_h8lre")
+pitch_scale = 0.5
+
+[node name="TogglePlayer" type="AudioStreamPlayer" parent="." unique_id=775562311]
+stream = ExtResource("17_ysn08")
 
 [connection signal="toggled" from="MarginContainer/HBoxContainer/Main/Information/HBoxContainer/VBoxContainer/AttackRestButton" to="." method="_on_attack_rest_button_toggled"]
 [connection signal="timeout" from="LoseTimer" to="." method="_on_lose_timer_timeout"]

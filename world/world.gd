@@ -14,11 +14,11 @@ enum Upgrade {
 
 const PRICE_INCREASE: float = 1.5
 const BIGGER_MUSCLES_MODIFIER: float = 1.25
-const TOUGHER_SKIN_MODIFIER: float = 1.5
+const TOUGHER_SKIN_MODIFIER: float = 0.75
 const FASTER_RECOVERY_MODIFIER: float = 3
 const SHARPER_INSTINCTS_MODIFIER: float = 0.75
 
-@onready var city: Node2D = $City
+@onready var city: Control = $City
 @onready var player: Node2D = $Player
 @onready var turn_timer: Timer = %TurnTimer
 @onready var attack_rest_button: Button = %AttackRestButton
@@ -28,6 +28,9 @@ const SHARPER_INSTINCTS_MODIFIER: float = 0.75
 @onready var sharper_instincts: TextureRect = %SharperInstincts
 @onready var destruction_points_amount: Label = %DestructionPointsAmount
 @onready var player_health_bar: ProgressBar = %PlayerHealthBar
+@onready var button_player: AudioStreamPlayer = $ButtonPlayer
+@onready var toggle_player: AudioStreamPlayer = $TogglePlayer
+
 # TODO: I should create functions for updating the different parts of UI (i.e. update_destruction_points(1))
 var health_bar: ProgressBar
 var city_destroyed_amount: Label
@@ -62,18 +65,18 @@ func update_player_health(new_amount: int) -> void:
 	player_health_bar.value = player.health
 
 
-func update_city_health(new_amount: int) -> void:
+func update_city_health(new_amount: float) -> void:
 	city.health = new_amount
-	
 	if city.health <= 0:
 		city.health = 0
 	if city.health >= city.max_health:
 		city.health = city.max_health
 	
-	city.set_city_destruction_progress((100 - city.health) / 100)
+	city.value = ((100 - city.health))
 
 
 func _on_upgrade_purchased(upgrade: int) -> void:
+	button_player.play()
 	update_destruction_points(destruction_points - upgrade_price)
 	
 	upgrade_price = upgrade_price * PRICE_INCREASE
@@ -87,7 +90,7 @@ func _on_upgrade_purchased(upgrade: int) -> void:
 			player.attack_damage = player.attack_damage * BIGGER_MUSCLES_MODIFIER
 			list_of_upgrades[Upgrade.BIGGER_MUSCLES].increase_upgrade_level()
 		Upgrade.TOUGHER_SKIN:
-			player.max_health = player.max_health * TOUGHER_SKIN_MODIFIER
+			city.attack_damage = city.attack_damage * TOUGHER_SKIN_MODIFIER
 			list_of_upgrades[Upgrade.TOUGHER_SKIN].increase_upgrade_level()
 		Upgrade.FASTER_RECOVERY:
 			player.health_regeneration = player.health_regeneration * FASTER_RECOVERY_MODIFIER
@@ -102,7 +105,6 @@ func _on_lose_timer_timeout() -> void:
 
 
 func _on_turn_timer_timeout() -> void:
-	print(city.health)
 	if player.health == 0:
 		is_game_over = true
 	
@@ -114,7 +116,6 @@ func _on_turn_timer_timeout() -> void:
 		if player_lost:
 			next_screen_path = lose_scene_path
 		else:
-			print("test")
 			next_screen_path = win_scene_path
 		go_to()
 	
@@ -140,7 +141,9 @@ func _on_turn_timer_timeout() -> void:
 func _on_attack_rest_button_toggled(toggled_on: bool) -> void:
 	if is_game_over:
 		return
-		
+	
+	toggle_player.play()
+	
 	player.is_attacking = toggled_on
 	
 	if player.is_attacking:
