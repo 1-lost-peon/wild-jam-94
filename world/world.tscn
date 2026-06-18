@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://0vdv5o0a8bxd" path="res://world/progress_bar_filled.png" id="6_m0cxt"]
 [ext_resource type="Texture2D" uid="uid://un02ngkb16ub" path="res://world/button.png" id="7_4papg"]
 [ext_resource type="Texture2D" uid="uid://bn5lduibjyj45" path="res://world/border_box_2.png" id="7_ai45w"]
-[ext_resource type="PackedScene" uid="uid://cxm5iyfnt55ym" path="res://world/player.tscn" id="7_sc4t8"]
+[ext_resource type="PackedScene" uid="uid://cxm5iyfnt55ym" path="res://world/player/player.tscn" id="7_sc4t8"]
 [ext_resource type="Texture2D" uid="uid://dupn8yw0af7sq" path="res://world/button_3.png" id="8_4papg"]
 [ext_resource type="Texture2D" uid="uid://ppne57jsnn1h" path="res://world/button_2.png" id="8_fyhu2"]
 [ext_resource type="Texture2D" uid="uid://db6xlhoygi665" path="res://world/button_4.png" id="10_ov2xu"]
@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://g0dxuhjjhq0d" path="res://world/destruction_points.png" id="15_h8lre"]
 [ext_resource type="AudioStream" uid="uid://crdl6cy5w2v0p" path="res://world/audio/select_002.ogg" id="16_h8lre"]
 [ext_resource type="AudioStream" uid="uid://cqtu3p1nnfooj" path="res://world/audio/switch_002.ogg" id="17_ysn08"]
-[ext_resource type="AudioStream" uid="uid://b7pa1g2ug4cn0" path="res://world/TNMT God.WAV" id="18_m0cxt"]
+[ext_resource type="AudioStream" uid="uid://bl2en122i47xl" path="res://world/TNMT God(1).WAV" id="18_m0cxt"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j34ew"]
 texture = ExtResource("5_ysn08")
@@ -61,7 +61,7 @@ texture_margin_top = 16.0
 texture_margin_right = 16.0
 texture_margin_bottom = 16.0
 
-[node name="World" type="Control" unique_id=1273771794 node_paths=PackedStringArray("list_of_upgrades")]
+[node name="World" type="Control" unique_id=1273771794 node_paths=PackedStringArray("list_of_upgrades", "list_of_mutations")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -70,11 +70,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h5o24")
 upgrade_price = 5
+mutation_price = 15
 list_of_upgrades = {
 0: NodePath("MarginContainer/HBoxContainer/Shop/Upgrades/VBoxContainer/BiggerMuscles"),
 1: NodePath("MarginContainer/HBoxContainer/Shop/Upgrades/VBoxContainer/TougherSkin"),
 2: NodePath("MarginContainer/HBoxContainer/Shop/Upgrades/VBoxContainer/FasterRecovery"),
 3: NodePath("MarginContainer/HBoxContainer/Shop/Upgrades/VBoxContainer/SharperInstincts")
+}
+list_of_mutations = {
+0: NodePath("MarginContainer/HBoxContainer/Shop/Mutations/GridContainer/Humanoid"),
+1: NodePath("MarginContainer/HBoxContainer/Shop/Mutations/GridContainer/Wings"),
+2: NodePath("MarginContainer/HBoxContainer/Shop/Mutations/GridContainer/Spikes"),
+3: NodePath("MarginContainer/HBoxContainer/Shop/Mutations/GridContainer/ExtraArms"),
+4: NodePath("MarginContainer/HBoxContainer/Shop/Mutations/GridContainer/Teeth")
 }
 auto_advance = false
 
@@ -261,17 +269,25 @@ layout_mode = 2
 size_flags_horizontal = 3
 upgrade_name = "Extra Arms"
 
-[node name="MutationPanel2" parent="MarginContainer/HBoxContainer/Shop/Mutations/GridContainer" unique_id=990431917 instance=ExtResource("12_b2suy")]
+[node name="Humanoid" parent="MarginContainer/HBoxContainer/Shop/Mutations/GridContainer" unique_id=990431917 instance=ExtResource("12_b2suy")]
 layout_mode = 2
 size_flags_horizontal = 3
+upgrade_name = "Humanoid"
 
-[node name="MutationPanel3" parent="MarginContainer/HBoxContainer/Shop/Mutations/GridContainer" unique_id=1476011280 instance=ExtResource("12_b2suy")]
+[node name="Wings" parent="MarginContainer/HBoxContainer/Shop/Mutations/GridContainer" unique_id=1476011280 instance=ExtResource("12_b2suy")]
 layout_mode = 2
 size_flags_horizontal = 3
+upgrade_name = "Wings"
 
-[node name="MutationPanel4" parent="MarginContainer/HBoxContainer/Shop/Mutations/GridContainer" unique_id=1545505987 instance=ExtResource("12_b2suy")]
+[node name="Spikes" parent="MarginContainer/HBoxContainer/Shop/Mutations/GridContainer" unique_id=1545505987 instance=ExtResource("12_b2suy")]
 layout_mode = 2
 size_flags_horizontal = 3
+upgrade_name = "Spikes"
+
+[node name="Teeth" parent="MarginContainer/HBoxContainer/Shop/Mutations/GridContainer" unique_id=1431585720 instance=ExtResource("12_b2suy")]
+layout_mode = 2
+size_flags_horizontal = 3
+upgrade_name = "Sharp Teeth"
 
 [node name="Upgrades" type="NinePatchRect" parent="MarginContainer/HBoxContainer/Shop" unique_id=1352007704]
 custom_minimum_size = Vector2(0, 350)
@@ -327,7 +343,8 @@ attack_damage = 4.2
 health_regeneration = 1.0
 
 [node name="Player" parent="." unique_id=1277995114 instance=ExtResource("7_sc4t8")]
-position = Vector2(128, 230)
+position = Vector2(189, 386)
+scale = Vector2(0.5, 0.5)
 attack_damage = 1.0
 health_regeneration = 2.3
 
@@ -347,6 +364,7 @@ stream = ExtResource("17_ysn08")
 
 [node name="MainPlayer" type="AudioStreamPlayer" parent="." unique_id=751426322]
 stream = ExtResource("18_m0cxt")
+volume_db = -5.0
 autoplay = true
 bus = &"Music"
 

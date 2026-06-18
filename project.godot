@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.6", "Mobile")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://crnld8x47xe6i"
+
 [gui]
 
 theme/custom="uid://d1stnglxqw51o"

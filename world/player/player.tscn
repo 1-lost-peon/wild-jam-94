@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cxm5iyfnt55ym"]
+
+[ext_resource type="Script" uid="uid://b52x5qxfr1r3h" path="res://world/player/player.gd" id="1_2gpuf"]
+[ext_resource type="Texture2D" uid="uid://341qhf1vnjkb" path="res://world/player/normal.png" id="2_cvtd2"]
+[ext_resource type="Texture2D" uid="uid://db4elr046ywjb" path="res://world/player/wings.png" id="2_d3e1v"]
+[ext_resource type="Texture2D" uid="uid://fphhylooqjbb" path="res://world/arm.png" id="3_4nodc"]
+[ext_resource type="Texture2D" uid="uid://2o20ufwmrqrc" path="res://world/player/humaoid.png" id="5_4br6r"]
+[ext_resource type="Texture2D" uid="uid://bglydf7w5u376" path="res://world/player/extra_arms.png" id="6_ljdef"]
+[ext_resource type="Texture2D" uid="uid://r87370b8rd01" path="res://world/player/mouth.png" id="7_2x47q"]
+[ext_resource type="Texture2D" uid="uid://c8ql2dcoyevuc" path="res://world/player/spikes.png" id="8_3n4qb"]
+
+[node name="Player" type="Node2D" unique_id=1277995114]
+script = ExtResource("1_2gpuf")
+
+[node name="Wings" type="Sprite2D" parent="." unique_id=1968100050]
+visible = false
+texture = ExtResource("2_d3e1v")
+
+[node name="Normal" type="Sprite2D" parent="." unique_id=1306916983]
+texture = ExtResource("2_cvtd2")
+
+[node name="Arms1" type="Node2D" parent="Normal" unique_id=1914157484]
+visible = false
+position = Vector2(-186, -346)
+
+[node name="MonsterArm" type="Sprite2D" parent="Normal/Arms1" unique_id=290229747]
+position = Vector2(262.99997, 311)
+rotation = -1.5707964
+scale = Vector2(0.26672354, 0.32346398)
+texture = ExtResource("3_4nodc")
+
+[node name="MonsterArm2" type="Sprite2D" parent="Normal/Arms1" unique_id=101842513]
+position = Vector2(112.000015, 311)
+rotation = -1.5707964
+scale = Vector2(0.26672354, 0.32346398)
+texture = ExtResource("3_4nodc")
+flip_v = true
+
+[node name="Humanoid" type="Sprite2D" parent="." unique_id=615626333]
+visible = false
+texture = ExtResource("5_4br6r")
+
+[node name="ExtraArms" type="Sprite2D" parent="." unique_id=2146974878]
+visible = false
+texture = ExtResource("6_ljdef")
+
+[node name="Mouth" type="Sprite2D" parent="." unique_id=998367727]
+visible = false
+texture = ExtResource("7_2x47q")
+
+[node name="Spikes" type="Sprite2D" parent="." unique_id=695653671]
+visible = false
+texture = ExtResource("8_3n4qb")

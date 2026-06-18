@@ -2,6 +2,20 @@
 
 [ext_resource type="Script" uid="uid://bdbx32dxa1ti1" path="res://gui/screens/menus/main_menu.gd" id="1_owke6"]
 [ext_resource type="Texture2D" uid="uid://bm66lekbmw6qc" path="res://gui/screens/menus/city.jpg" id="2_owke6"]
+[ext_resource type="FontFile" uid="uid://c82xwdcx5ku4k" path="res://gui/screens/menus/shlop rg.otf" id="3_x3kiw"]
+[ext_resource type="Texture2D" uid="uid://bulqxruammsca" path="res://world/border_box.png" id="4_bp78l"]
+[ext_resource type="Texture2D" uid="uid://bn5lduibjyj45" path="res://world/border_box_2.png" id="5_muieo"]
+[ext_resource type="Texture2D" uid="uid://ck70bql7llrjk" path="res://world/border_box_hover.png" id="6_j1bu6"]
+[ext_resource type="AudioStream" uid="uid://bl2en122i47xl" path="res://world/TNMT God(1).WAV" id="7_leinr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_muieo"]
+texture = ExtResource("4_bp78l")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j1bu6"]
+texture = ExtResource("5_muieo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_leinr"]
+texture = ExtResource("6_j1bu6")
 
 [node name="MainMenu" type="Control" unique_id=1600305850]
 layout_mode = 3
@@ -15,6 +29,7 @@ next_screen_path = "uid://duk23si6l6ny1"
 auto_advance = false
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1302342146]
+visible = false
 modulate = Color(0.91228896, 0.9122889, 0.91228884, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -24,19 +39,33 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_owke6")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1231935746]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.011764706, 0, 0.101960786, 1)
+
 [node name="TitleLabel" type="Label" parent="." unique_id=1356297695]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -374.5
-offset_top = 64.0
+offset_top = -246.0
 offset_right = 374.5
-offset_bottom = 177.0
+offset_bottom = 62.0
 grow_horizontal = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 100
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6784314, 0, 0.37254903, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 64
+theme_override_fonts/font = ExtResource("3_x3kiw")
+theme_override_font_sizes/font_size = 256
 text = "Mutie"
 horizontal_alignment = 1
 
@@ -47,13 +76,23 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -69.5
-offset_top = -132.06299
-offset_right = 69.5
-offset_bottom = -63.999756
+offset_left = -112.75
+offset_top = -185.0
+offset_right = 112.75
+offset_bottom = -94.999756
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 0
-text = "play"
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_muieo")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_j1bu6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_leinr")
+text = "START GAME"
+
+[node name="MainPlayer" type="AudioStreamPlayer" parent="." unique_id=1085070788]
+stream = ExtResource("7_leinr")
+volume_db = -5.0
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -2,7 +2,9 @@ extends ScreenState
 
 @export var upgrades: Upgrade
 @export var upgrade_price: int
+@export var mutation_price: int
 @export var list_of_upgrades: Dictionary[Upgrade, TextureRect]
+@export var list_of_mutations: Dictionary[Mutation, TextureRect]
 @export var destruction_points: int = 0
 
 enum Upgrade {
@@ -10,6 +12,14 @@ enum Upgrade {
 	TOUGHER_SKIN,
 	FASTER_RECOVERY,
 	SHARPER_INSTINCTS,
+}
+
+enum Mutation {
+	HUMANOID,
+	WINGS,
+	SPIKES,
+	EXTRA_ARMS,
+	MOUTH
 }
 
 const PRICE_INCREASE: float = 1.5
@@ -38,6 +48,8 @@ var is_game_over: bool = false
 var player_lost: bool = true
 var lose_scene_path: String = "res://gui/screens/lose_screen.tscn"
 var win_scene_path: String = "res://gui/screens/win_screen.tscn"
+var turn_counter: int = 3
+var is_humanoid: bool = false
 
 
 func _ready() -> void:
@@ -47,6 +59,10 @@ func _ready() -> void:
 	for upgrade_type in list_of_upgrades:
 		list_of_upgrades[upgrade_type].purchase_button.pressed.connect(_on_upgrade_purchased.bind(upgrade_type))
 		list_of_upgrades[upgrade_type].update_price(str(upgrade_price))
+	
+	for mutation_type in list_of_mutations:
+		list_of_mutations[mutation_type].purchase_button.pressed.connect(_on_mutation_purchased.bind(mutation_type))
+		list_of_mutations[mutation_type].update_price(str(mutation_price))
 
 
 func update_destruction_points(new_amount: int) -> void:
@@ -100,6 +116,37 @@ func _on_upgrade_purchased(upgrade: int) -> void:
 			list_of_upgrades[Upgrade.SHARPER_INSTINCTS].increase_upgrade_level()
 
 
+func _on_mutation_purchased(mutation: int) -> void:
+	button_player.play()
+	update_destruction_points(destruction_points - mutation_price)
+	
+	mutation_price = mutation_price * PRICE_INCREASE
+	
+	for mutation_type in list_of_mutations:
+		list_of_mutations[mutation_type].update_price(str(int(mutation_price)))
+	
+	match mutation:
+		Mutation.EXTRA_ARMS: # Double Player Damage
+			player.attack_damage = player.attack_damage * 2
+			player.mutate_arms()
+			list_of_mutations[Mutation.EXTRA_ARMS].visible = false
+		Mutation.HUMANOID: # Blend in with Humans, delay damage for 3 seconds
+			is_humanoid = true
+			player.mutate_humanoid()
+			list_of_mutations[Mutation.HUMANOID].visible = false
+		Mutation.MOUTH: # Double Damage
+			player.attack_damage = player.attack_damage * 2
+			player.mutate_mouth()
+			list_of_mutations[Mutation.MOUTH].visible = false
+		Mutation.WINGS: # Increase damage speeds
+			player.attack_damage = player.attack_damage * 1.15
+			player.mutate_wings()
+			list_of_mutations[Mutation.WINGS].visible = false
+		Mutation.SPIKES: # Reduce damage by half
+			city.health_regeneration = city.attack_damage / 2
+			player.mutate_spikes()
+			list_of_mutations[Mutation.SPIKES].visible = false
+
 func _on_lose_timer_timeout() -> void:
 	go_to()
 
@@ -126,16 +173,23 @@ func _on_turn_timer_timeout() -> void:
 		for upgrade_type in list_of_upgrades:
 			list_of_upgrades[upgrade_type].toggle_disable(false)
 
+
+
 	# TODO: Randomize the amounts
 	if player.is_attacking:
-		update_player_health(player.health - city.attack_damage)
+		update_city_health(city.health - player.attack_damage)
 		update_destruction_points(destruction_points + 1)
 		
-		update_city_health(city.health - player.attack_damage)
-		
+		if turn_counter == 3:
+			update_player_health(player.health - city.attack_damage)
+		else:
+			turn_counter += 1
 	else:
 		update_player_health(player.health + player.health_regeneration)
 		update_city_health(city.health + city.health_regeneration)
+		print(turn_counter)
+		if is_humanoid and turn_counter == 3:
+			turn_counter = 0
 
 
 func _on_attack_rest_button_toggled(toggled_on: bool) -> void:

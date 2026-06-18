@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b0h42fr2vbvy4" path="res://gui/screens/credits_1.png" id="2_sp758"]
 [ext_resource type="Texture2D" uid="uid://diugxdmqkmvxt" path="res://gui/screens/credits_2.png" id="3_hlfcy"]
 [ext_resource type="Texture2D" uid="uid://biwdq8l1q4fxa" path="res://gui/screens/credits_3.png" id="4_fev8w"]
+[ext_resource type="AudioStream" uid="uid://bl2en122i47xl" path="res://world/TNMT God(1).WAV" id="5_hlfcy"]
 
 [sub_resource type="Animation" id="Animation_hlfcy"]
 length = 0.001
@@ -156,7 +157,7 @@ anchor_bottom = 1.0
 offset_left = -517.0
 offset_top = 519.0
 offset_right = 517.0
-offset_bottom = 2348.0
+offset_bottom = 2668.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 64
@@ -174,14 +175,18 @@ Lost Peon
 
 Art
 Lost Peon
+Mrs. Lost Peon - Credits Artwork
 
 Music & Sound
-Your Name / Asset Pack Name
+Remi.Aspergay - Gameplay Music
+Tallbeard Studio - Menu & Credit Music
+Kenney UI Sounds - Button SFX
 
 Assets
 flaticon - Lightning Bolt
 Modified Kenney UI Assets (https://kenney.nl/)
 Google Fonts - Barlow font
+Typodermic Fonts - Shlop font
 
 Special Thanks
 Playtesters
@@ -195,5 +200,11 @@ Thank you for playing!"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1638030742]
 libraries/ = SubResource("AnimationLibrary_1h0mf")
 speed_scale = 0.25
+
+[node name="MainPlayer" type="AudioStreamPlayer" parent="." unique_id=654128517]
+stream = ExtResource("5_hlfcy")
+volume_db = -5.0
+autoplay = true
+bus = &"Music"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
